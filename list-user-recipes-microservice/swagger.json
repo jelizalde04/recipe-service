@@ -1,0 +1,31 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "List User Recipes API",
+    "description": "API for listing all recipes of a specific user"
+  },
+  "paths": {
+    "/list-user-recipes/{userId}": {
+      "get": {
+        "summary": "Retrieve all recipes by a specific user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of user's recipes returned successfully"
+          },
+          "404": {
+            "description": "No recipes found for this user"
+          }
+        }
+      }
+    }
+  }
+}
