@@ -1,0 +1,40 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Recipe Modification Permission API",
+    "description": "API for checking if a user has permission to modify a recipe"
+  },
+  "paths": {
+    "/check-permission/{userId}/{recipeId}": {
+      "get": {
+        "summary": "Check if a user can modify a recipe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "recipeId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User has permission"
+          },
+          "403": {
+            "description": "User does not have permission"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        }
+      }
+    }
+  }
+}
