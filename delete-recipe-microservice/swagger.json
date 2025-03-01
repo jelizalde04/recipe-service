@@ -1,0 +1,31 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Delete Recipe API",
+    "description": "API for deleting a recipe"
+  },
+  "paths": {
+    "/delete-recipe/{id}": {
+      "delete": {
+        "summary": "Delete a recipe by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipe deleted successfully"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        }
+      }
+    }
+  }
+}
