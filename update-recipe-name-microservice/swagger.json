@@ -1,0 +1,47 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Update Recipe Name API",
+    "description": "API for updating the name of a recipe"
+  },
+  "paths": {
+    "/update-recipe-name/{id}": {
+      "put": {
+        "summary": "Update the name of a recipe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "newName",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "newName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipe name updated successfully"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        }
+      }
+    }
+  }
+}
