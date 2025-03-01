@@ -1,0 +1,31 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Get Recipe By ID API",
+    "description": "API for retrieving a recipe by ID"
+  },
+  "paths": {
+    "/get-recipe-by-id/{id}": {
+      "get": {
+        "summary": "Retrieve a recipe by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipe found successfully"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        }
+      }
+    }
+  }
+}
