@@ -1,30 +1,16 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
-    "title": "Get Recipe By ID API",
-    "description": "API for retrieving a recipe by ID"
+    "title": "Get Recipe By ID Microservice",
+    "description": "API to get recipe details by ID",
+    "version": "1.0.0"
   },
   "paths": {
-    "/get-recipe-by-id/{id}": {
+    "/get-recipe": {
       "get": {
         "summary": "Retrieve a recipe by ID",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Recipe found successfully"
-          },
-          "404": {
-            "description": "Recipe not found"
-          }
-        }
+        "parameters": [{"name": "id", "in": "query", "required": true, "type": "integer"}],
+        "security": [{"BearerAuth": []}]
       }
     }
   }
