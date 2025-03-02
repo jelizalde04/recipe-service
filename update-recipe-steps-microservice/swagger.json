@@ -1,49 +1,15 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
-    "title": "Update Recipe Steps API",
-    "description": "API for updating the steps of a recipe"
+    "title": "Update Recipe Steps Microservice",
+    "description": "API to update a recipe's steps",
+    "version": "1.0.0"
   },
   "paths": {
-    "/update-recipe-steps/{id}": {
+    "/update-steps": {
       "put": {
-        "summary": "Update the steps of a recipe",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "newSteps",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "newSteps": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Recipe steps updated successfully"
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "404": {
-            "description": "Recipe not found"
-          }
-        }
+        "summary": "Update recipe steps",
+        "security": [{"BearerAuth": []}]
       }
     }
   }

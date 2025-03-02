@@ -1,28 +1,45 @@
 <?php
+require_once __DIR__ . '/../services/RecipeService.php';
+require_once __DIR__ . '/../middlewares/AuthMiddleware.php';
 
-require_once 'services/RecipeService.php';
-
-use Psr\Http\Message\ServerRequestInterface;
-use React\Http\Message\Response;
-use function React\Promise\resolve;
-
-class UpdateRecipeStepsController
-{
+class UpdateRecipeStepsController {
     private $recipeService;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->recipeService = new RecipeService();
     }
 
-    public function updateRecipeSteps(ServerRequestInterface $request, $recipeId)
-    {
-        $body = json_decode((string) $request->getBody(), true);
-
-        if (!isset($body['newSteps']) || !is_array($body['newSteps'])) {
-            return new Response(400, ['Content-Type' => 'application/json'], json_encode(['error' => 'Invalid input']));
+    public function updateRecipeSteps() {
+        $headers = getallheaders();
+        if (!isset($headers['Authorization'])) {
+            http_response_code(401);
+            echo json_encode(["message" => "Unauthorized"]);
+            return;
         }
 
-        return resolve($this->recipeService->updateRecipeSteps($recipeId, $body['newSteps']));
+        try {
+            $token = str_replace("Bearer ", "", $headers['Authorization']);
+            $decoded = AuthMiddleware::verifyJWT($token);
+
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (!$data || !isset($data['id']) || !isset($data['steps'])) {
+                http_response_code(400);
+                echo json_encode(["message" => "Invalid request"]);
+                return;
+            }
+
+            $result = $this->recipeService->updateRecipeSteps($data['id'], $data['steps']);
+            if ($result) {
+                http_response_code(200);
+                echo json_encode(["message" => "Recipe steps updated successfully"]);
+            } else {
+                http_response_code(500);
+                echo json_encode(["message" => "Internal Server Error"]);
+            }
+        } catch (Exception $e) {
+            http_response_code(401);
+            echo json_encode(["message" => "Invalid token"]);
+        }
     }
 }
+?>
