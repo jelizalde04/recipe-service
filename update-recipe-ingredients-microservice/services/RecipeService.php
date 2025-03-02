@@ -1,30 +1,15 @@
 <?php
+require_once __DIR__ . '/../repositories/RecipeRepository.php';
 
-require_once 'models/Recipe.php';
+class RecipeService {
+    private $recipeRepository;
 
-use React\Http\Message\Response;
+    public function __construct() {
+        $this->recipeRepository = new RecipeRepository();
+    }
 
-class RecipeService
-{
-    private $recipes = [];
-
-    public function updateRecipeIngredients($recipeId, $newIngredients)
-    {
-        foreach ($this->recipes as $recipe) {
-            if ($recipe->id === $recipeId) {
-                $recipe->ingredients = $newIngredients;
-                return new Response(
-                    200,
-                    ['Content-Type' => 'application/json'],
-                    json_encode(['message' => 'Recipe ingredients updated successfully', 'recipe' => $recipe])
-                );
-            }
-        }
-
-        return new Response(
-            404,
-            ['Content-Type' => 'application/json'],
-            json_encode(['error' => 'Recipe not found'])
-        );
+    public function updateRecipeIngredients($id, $newIngredients) {
+        return $this->recipeRepository->updateRecipeIngredients($id, $newIngredients);
     }
 }
+?>
