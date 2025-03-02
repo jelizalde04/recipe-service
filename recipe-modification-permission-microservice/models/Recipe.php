@@ -1,19 +1,11 @@
 <?php
-
-class Recipe
-{
+class Recipe {
     public $id;
-    public $name;
-    public $userId;
-    public $ingredients;
-    public $steps;
+    public $user_id;
 
-    public function __construct($id, $name, $userId, $ingredients, $steps)
-    {
+    public function __construct($id, $user_id) {
         $this->id = $id;
-        $this->name = $name;
-        $this->userId = $userId;
-        $this->ingredients = $ingredients;
-        $this->steps = $steps;
+        $this->user_id = $user_id;
     }
 }
+?>
