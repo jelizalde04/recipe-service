@@ -1,51 +1,16 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "version": "1.0.0",
-      "title": "Recipe Service API",
-      "description": "API for managing recipes"
-    },
-    "paths": {
-      "/create-recipe": {
-        "post": {
-          "summary": "Create a new recipe",
-          "parameters": [
-            {
-              "in": "body",
-              "name": "recipe",
-              "required": true,
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "ingredients": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "steps": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          ],
-          "responses": {
-            "201": {
-              "description": "Recipe created successfully"
-            },
-            "400": {
-              "description": "Invalid input"
-            }
-          }
-        }
+  "swagger": "2.0",
+  "info": {
+    "title": "Create Recipe Microservice",
+    "description": "API to create a recipe",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/create": {
+      "post": {
+        "summary": "Create a new recipe",
+        "security": [{"BearerAuth": []}]
       }
     }
   }
-  
+}

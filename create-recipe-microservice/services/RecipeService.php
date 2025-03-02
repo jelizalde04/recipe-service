@@ -1,23 +1,16 @@
 <?php
+require_once __DIR__ . '/../repositories/RecipeRepository.php';
 
-require_once 'models/Recipe.php';
+class RecipeService {
+    private $recipeRepository;
 
-use React\Promise\Promise;
-use React\Http\Message\Response;
+    public function __construct() {
+        $this->recipeRepository = new RecipeRepository();
+    }
 
-class RecipeService
-{
-    private $recipes = [];
-
-    public function createRecipe($data)
-    {
-        $recipe = new Recipe($data['name'], $data['ingredients'], $data['steps']);
-        $this->recipes[] = $recipe;
-
-        return new Response(
-            201,
-            ['Content-Type' => 'application/json'],
-            json_encode(['message' => 'Recipe created successfully', 'recipe' => $recipe])
-        );
+    public function createRecipe($name, $ingredients, $steps) {
+        $recipe = new Recipe($name, $ingredients, $steps);
+        return $this->recipeRepository->createRecipe($recipe);
     }
 }
+?>
