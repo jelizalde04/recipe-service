@@ -1,19 +1,15 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
-    "title": "List All Recipes API",
-    "description": "API for listing all recipes"
+    "title": "List All Recipes Microservice",
+    "description": "API to retrieve all stored recipes",
+    "version": "1.0.0"
   },
   "paths": {
-    "/list-all-recipes": {
+    "/list-recipes": {
       "get": {
         "summary": "Retrieve all recipes",
-        "responses": {
-          "200": {
-            "description": "List of recipes returned successfully"
-          }
-        }
+        "security": [{"BearerAuth": []}]
       }
     }
   }
