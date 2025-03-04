@@ -1,0 +1,25 @@
+name: get-recipe-by-id-microservice CI/CD
+on:
+  push:
+    branches:
+      - test
+  pull_request:
+    branches:
+      - test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Simple Build Step
+        run: echo "Build successful"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fake Deployment Step
+        run: echo "Deployment successful"
